@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ArtistryX AI</title>
-    <link rel="icon" type="image/png" href="font/logo.png">
+    <link rel="icon" type="image/png" href="public/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img src="font/hd.png" alt="ArtistryX Logo">
+            <img src="public/hd.png" alt="ArtistryX Logo">
         </div>
         <div class="nav-links">
             <a href="#about">About</a>
@@ -20,8 +22,14 @@
             <a href="#tokenomics">Tokenomics</a>
         </div>
         <div class="dex-links">
-            <a href="#dextools" target="_blank">DEXTools</a>
-            <a href="#dexscreener" target="_blank">DEX Screener</a>
+            <a href="#dextools" target="_blank" class="dex-link">
+                <img src="public/dextools.svg" alt="DEXTools" class="dex-icon">
+                DEXTools
+            </a>
+            <a href="#dexscreener" target="_blank" class="dex-link">
+                <img src="public/dex-screener-seeklogo.svg" alt="DEX Screener" class="dex-icon">
+                DEX Screener
+            </a>
         </div>
     </nav>
 
@@ -36,8 +44,14 @@
         </div>
         <div class="scroll-indicator">
             <div class="social-links">
-                <a href="#twitter" class="social-link">Follow on Twitter</a>
-                <a href="#telegram" class="social-link">Join Telegram</a>
+                <a href="https://x.com/ArtistryX_" target="_blank" class="social-link">
+                    <i class="fa-brands fa-x-twitter"></i>
+                    Follow on Twitter
+                </a>
+                <a href="https://t.me/ArtistryX_AI" target="_blank" class="social-link">
+                    <i class="fa-brands fa-telegram"></i>
+                    Join Telegram
+                </a>
             </div>
             <span class="scroll-text">(SCROLL)</span>
         </div>
@@ -56,17 +70,7 @@
                     </div>
                 </div>
                 <div class="section-image">
-                    <div class="image-placeholder">
-                        <svg width="100%" height="100%" viewBox="0 0 400 400">
-                            <defs>
-                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:rgb(230,240,255);stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:rgb(240,255,240);stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="100%" height="100%" fill="url(#grad1)" />
-                        </svg>
-                    </div>
+                    <img src="public/p1.png" alt="About ArtistryX" class="section-img" loading="lazy" decoding="async" />
                 </div>
             </div>
         </div>
@@ -80,53 +84,35 @@
             <h3 class="section-title">CUTTING-EDGE AI TECHNOLOGY</h3>
             <div class="steps-grid">
                 <div class="step-item">
-                    <span class="step-number">01</span>
-                    <p>Leverage LLM to refine your prompts for faster, more accurate results.</p>
+                    <div class="step-content">
+                        <span class="step-number">01</span>
+                        <p>Leverage LLM to refine your prompts for faster, more accurate results.</p>
+                    </div>
                     <div class="step-image">
-                        <div class="image-placeholder">
-                            <svg width="100%" height="100%" viewBox="0 0 400 300">
-                                <defs>
-                                    <linearGradient id="step-grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:rgb(230,240,255);stop-opacity:1" />
-                                        <stop offset="100%" style="stop-color:rgb(240,255,240);stop-opacity:1" />
-                                    </linearGradient>
-                                </defs>
-                                <rect width="100%" height="100%" fill="url(#step-grad1)" />
-                            </svg>
+                        <div class="step-image-wrapper">
+                            <img src="public/p4-2.png" alt="AI Language Model" class="step-img" />
                         </div>
                     </div>
                 </div>
                 <div class="step-item">
-                    <span class="step-number">02</span>
-                    <p>Harness powerful AI to inject life into your creations.</p>
+                    <div class="step-content">
+                        <span class="step-number">02</span>
+                        <p>Harness powerful AI to inject life into your creations.</p>
+                    </div>
                     <div class="step-image">
-                        <div class="image-placeholder">
-                            <svg width="100%" height="100%" viewBox="0 0 400 300">
-                                <defs>
-                                    <linearGradient id="step-grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:rgb(230,240,255);stop-opacity:1" />
-                                        <stop offset="100%" style="stop-color:rgb(240,255,240);stop-opacity:1" />
-                                    </linearGradient>
-                                </defs>
-                                <rect width="100%" height="100%" fill="url(#step-grad2)" />
-                            </svg>
+                        <div class="step-image-wrapper">
+                            <img src="public/p2-2.png" alt="AI Creation Process" class="step-img" />
                         </div>
                     </div>
                 </div>
                 <div class="step-item">
-                    <span class="step-number">03</span>
-                    <p>Achieve precision with natural language processing for the perfect final product.</p>
+                    <div class="step-content">
+                        <span class="step-number">03</span>
+                        <p>Achieve precision with natural language processing for the perfect final product.</p>
+                    </div>
                     <div class="step-image">
-                        <div class="image-placeholder">
-                            <svg width="100%" height="100%" viewBox="0 0 400 300">
-                                <defs>
-                                    <linearGradient id="step-grad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:rgb(230,240,255);stop-opacity:1" />
-                                        <stop offset="100%" style="stop-color:rgb(240,255,240);stop-opacity:1" />
-                                    </linearGradient>
-                                </defs>
-                                <rect width="100%" height="100%" fill="url(#step-grad3)" />
-                            </svg>
+                        <div class="step-image-wrapper">
+                            <img src="public/p3-2.png" alt="AI Language Processing" class="step-img" />
                         </div>
                     </div>
                 </div>
@@ -145,21 +131,21 @@
                     <h3>Describe your vision</h3>
                     <p>Start with a sentence. Whether it's a brief description or a detailed story, let your words shape the scene. Describe the setting, the style, and the mood.</p>
                     <div class="hover-image">
-                        <img src="font/logo.png" alt="Describe Process" />
+                        <img src="public/icon1.png" alt="Describe Process" />
                     </div>
                 </div>
                 <div class="process-item">
                     <h3>Customize your creation</h3>
                     <p>Once the initial version is ready, pick your favorite and refine it with your words—tweak the elements until it's just right.</p>
                     <div class="hover-image">
-                        <img src="font/logo.png" alt="Customize Process" />
+                        <img src="public/icon2.png" alt="Customize Process" />
                     </div>
                 </div>
                 <div class="process-item">
                     <h3>Download and share</h3>
                     <p>Download your vivid images or videos and share them with the world!</p>
                     <div class="hover-image">
-                        <img src="font/logo.png" alt="Share Process" />
+                        <img src="public/icon3.png" alt="Share Process" />
                     </div>
                 </div>
             </div>
@@ -194,7 +180,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="footer-logo-wrapper">
-                        <img src="font/hd.png" alt="ArtistryX Logo" class="footer-logo">
+                        <img src="public/hd.png" alt="ArtistryX Logo" class="footer-logo">
                     </div>
                     <p>Create immersive images or videos straight from your imagination.</p>
                 </div>
@@ -208,10 +194,22 @@
                     </div>
                     <div class="footer-column">
                         <h4>Social Links</h4>
-                        <a href="#twitter" target="_blank">Twitter</a>
-                        <a href="#telegram" target="_blank">Telegram</a>
-                        <a href="#dextools" target="_blank">DEXTools</a>
-                        <a href="#dexscreener" target="_blank">DEX Screener</a>
+                        <a href="https://x.com/ArtistryX_" target="_blank" class="footer-social-link">
+                            <i class="fa-brands fa-x-twitter"></i>
+                            Twitter
+                        </a>
+                        <a href="https://t.me/ArtistryX_AI" target="_blank" class="footer-social-link">
+                            <i class="fa-brands fa-telegram"></i>
+                            Telegram
+                        </a>
+                        <a href="#dextools" target="_blank" class="footer-social-link">
+                            <img src="public/dextools.svg" alt="DEXTools" class="footer-dex-icon">
+                            DEXTools
+                        </a>
+                        <a href="#dexscreener" target="_blank" class="footer-social-link">
+                            <img src="public/dex-screener-seeklogo.svg" alt="DEX Screener" class="footer-dex-icon">
+                            DEX Screener
+                        </a>
                     </div>
                 </div>
             </div>

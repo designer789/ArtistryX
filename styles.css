@@ -92,6 +92,8 @@ section {
     font-size: 5rem;
     line-height: 1.1;
     font-weight: 500;
+    word-wrap: break-word;
+    max-width: 100%;
 }
 
 .section-text {
@@ -103,18 +105,18 @@ section {
 .section-image {
     position: relative;
     width: 100%;
-    padding-bottom: 100%; /* 1:1 aspect ratio */
+    margin-left: -20%;
+    width: 120%;
+    aspect-ratio: 1/1;
+    transform: translateZ(0);
+    will-change: transform;
 }
 
-.image-placeholder {
-    position: absolute;
-    top: 0;
-    left: 0;
+.section-img {
     width: 100%;
     height: 100%;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    object-fit: contain;
+    will-change: transform;
 }
 
 /* Steps grid */
@@ -139,7 +141,7 @@ section {
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    justify-content: space-between;
     border-radius: 4px;
 }
 
@@ -197,11 +199,16 @@ section {
     }
 }
 
+.step-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
 .step-number {
     display: block;
     font-size: 1.2rem;
     font-family: 'NON-Natural-Grotesk', sans-serif;
-    margin-bottom: 1rem;
     opacity: 0.5;
 }
 
@@ -210,24 +217,46 @@ section {
     line-height: 1.1;
     font-family: 'PPNeueMontreal', sans-serif;
     font-weight: 400;
+    word-wrap: break-word;
 }
 
 .step-image {
     position: relative;
     width: 100%;
-    padding-bottom: 75%; /* 4:3 aspect ratio */
     margin-top: 1rem;
+    background: linear-gradient(135deg,
+        rgba(230, 240, 255, 0.4) 0%,
+        rgba(240, 255, 240, 0.4) 100%
+    );
+    border-radius: 4px;
+    overflow: hidden;
 }
 
-.step-image .image-placeholder {
-    position: absolute;
+.step-image-wrapper {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    min-height: 200px;
     border-radius: 4px;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-img {
+    width: 90%;
+    height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    opacity: 0.9;
+    margin: 0 auto;
+    display: block;
+}
+
+/* 特别处理第二张图片的对齐方式 */
+.step-item:nth-child(2) .step-img {
+    object-position: center bottom;
 }
 
 /* Process grid */
@@ -260,37 +289,73 @@ section {
     font-size: 1.6rem;
     line-height: 1.4;
     flex: 0 0 50%;
+    word-wrap: break-word;
 }
 
 .hover-image {
     position: fixed;
     pointer-events: none;
     z-index: 2000;
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     transform: translate(-50%, -50%);
-    border-radius: 8px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1),
+                0 0 0 1px rgba(0,0,0,0.05);
     background: white;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.3s ease, transform 0.2s ease;
     will-change: transform, left, top;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .hover-image img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    padding: 20px;
+    padding: 32px;
     display: block;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
+    transition: transform 0.3s ease;
 }
 
 .hover-image.active {
     visibility: visible;
     opacity: 1;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.hover-image:hover img {
+    transform: scale(1.05);
+}
+
+/* 添加微妙的渐变边框 */
+.hover-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 16px;
+    padding: 1px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
 }
 
 /* CTA section */
@@ -333,6 +398,8 @@ section {
     font-size: 1.6rem;
     font-family: 'NON-Natural-Grotesk', sans-serif;
     font-weight: 500;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* 导航栏样式 */
@@ -399,16 +466,50 @@ section {
     gap: 2rem;
 }
 
+.dex-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.dex-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.footer-dex-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    filter: invert(1);
+}
+
 .dex-links a {
     color: #000000;
     text-decoration: none;
-    border-bottom: 1px solid #000000;
     opacity: 0.9;
     transition: opacity 0.3s ease, color 0.3s ease;
 }
 
+.dex-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    transition: width 0.3s ease;
+}
+
 .dex-links a:hover {
     opacity: 1;
+}
+
+.dex-links a:hover::after {
+    width: 100%;
 }
 
 /* Hero section 样式 */
@@ -418,6 +519,8 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
+    overflow: hidden;
     background: linear-gradient(135deg, 
         rgba(255, 255, 255, 1) 0%,
         rgba(240, 240, 255, 0.8) 25%,
@@ -427,11 +530,50 @@ section {
     );
 }
 
+/* 背景渐变层 */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -2;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 1) 0%,
+        rgba(240, 240, 255, 0.8) 25%,
+        rgba(230, 255, 240, 0.8) 50%,
+        rgba(240, 240, 255, 0.8) 75%,
+        rgba(255, 255, 255, 1) 100%
+    );
+}
+
+/* 背景图片 */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    background-image: url('public/7170632.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center right;
+    z-index: 0;
+    opacity: 0.6;
+    mix-blend-mode: multiply;
+    will-change: opacity;
+    transform: translateZ(0);
+}
+
 .hero .hero-content,
 .hero .scroll-indicator {
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content {
@@ -465,6 +607,8 @@ section {
     margin-top: 4rem;
     position: relative;
     z-index: 1;
+    max-width: 100%;
+    word-wrap: break-word;
 }
 
 .hero-subtitle {
@@ -493,12 +637,36 @@ section {
 .social-link {
     color: #000000;
     text-decoration: none;
-    border-bottom: 1px solid #000000;
     transition: opacity 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.social-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    transition: width 0.3s ease;
 }
 
 .social-link:hover {
-    opacity: 0.7;
+    opacity: 1;
+}
+
+.social-link:hover::after {
+    width: 100%;
+}
+
+.social-link i {
+    font-size: 1.1em;
 }
 
 .scroll-text {
@@ -506,6 +674,18 @@ section {
 }
 
 /* 响应式设计 */
+@media (max-width: 1024px) {
+    .hero {
+        min-height: auto;
+        height: auto;
+        padding: 8rem 2rem 4rem;
+    }
+
+    .hero-content {
+        margin-bottom: 4rem;
+    }
+}
+
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -520,8 +700,21 @@ section {
         font-size: 12vw;
     }
     
-    .company-desc {
-        font-size: 1rem;
+    .hero {
+        padding: 6rem 1rem 3rem;
+    }
+    
+    .hero-content {
+        margin-bottom: 3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero::after {
+        width: 100%;
+        opacity: 0.2;
     }
     
     section {
@@ -532,7 +725,7 @@ section {
     .steps-grid,
     .process-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 3rem;
     }
     
     .section-text {
@@ -555,11 +748,6 @@ section {
         padding: 2rem 0;
     }
     
-    .hero-subtitle {
-        font-size: 1.1rem;
-        margin-top: -1rem;
-    }
-    
     .big-tagline {
         font-size: 2.5rem;
     }
@@ -574,8 +762,13 @@ section {
         margin-bottom: 2rem;
     }
     
+    .step-item {
+        padding: 1.5rem;
+    }
+    
     .step-item p {
         font-size: 1.3rem;
+        line-height: 1.3;
     }
     
     .process-item {
@@ -613,7 +806,57 @@ section {
     .dex-links a {
         font-size: 0.9rem;
     }
-} 
+    
+    .social-link {
+        font-size: 1.1rem;
+    }
+    
+    .section-image {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .step-image {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .step-image-wrapper {
+        min-height: 180px;
+    }
+    
+    .step-img {
+        width: 100%;
+        padding: 0.5rem;
+    }
+    
+    .step-content {
+        gap: 1rem;
+    }
+    
+    .step-number {
+        font-size: 1rem;
+    }
+}
+
+/* 平板尺寸优化 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .steps-grid {
+        gap: 1.5rem;
+    }
+    
+    .step-item {
+        padding: 1.5rem;
+    }
+    
+    .step-item p {
+        font-size: 1.4rem;
+    }
+    
+    .step-image-wrapper {
+        min-height: 160px;
+    }
+}
 
 /* Footer 样式 */
 .footer {
@@ -684,6 +927,16 @@ section {
     transition: opacity 0.3s ease;
 }
 
+.footer-social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-social-link i {
+    font-size: 1.1em;
+}
+
 .footer-column a:hover {
     opacity: 1;
 }
@@ -719,4 +972,10 @@ section {
     .footer-column a {
         font-size: 1rem;
     }
+}
+
+/* 确保图片不会溢出容器 */
+img {
+    max-width: 100%;
+    height: auto;
 } 
